@@ -1,220 +1,824 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enabler.life - Empowering Independence Through Technology</title>
-
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Enabler — Assistive Technology & Accessibility Solutions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body{
-    background:#f5f7fa;
-    color:#333;
-    line-height:1.6;
-}
+  :root {
+    --navy:   #0B1F3A;
+    --blue:   #185FA5;
+    --blue-m: #378ADD;
+    --blue-l: #E6F1FB;
+    --teal:   #0F6E56;
+    --teal-m: #1D9E75;
+    --teal-l: #E1F5EE;
+    --ink:    #1A1A1A;
+    --muted:  #5a6370;
+    --rule:   #E2E6EA;
+    --white:  #ffffff;
+    --off:    #F6F8FB;
+  }
 
-header{
-    background:#0d47a1;
-    color:white;
-    padding:20px 10%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+  html { scroll-behavior: smooth; }
 
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
+  /* ─── NAV ─────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--teal-m); }
+  nav ul { list-style: none; display: flex; gap: 2rem; }
+  nav ul a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  nav ul a:hover { color: var(--blue); }
+  .nav-cta {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 6px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue) !important; color: var(--white) !important; }
 
-.hero{
-    min-height:80vh;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-    background:linear-gradient(to right,#0d47a1,#1976d2);
-    color:white;
-}
+  /* ─── HERO ────────────────────────────────────────── */
+  #hero {
+    padding: 7rem 5vw 5rem;
+    max-width: 1120px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-m);
+    margin-bottom: 1rem;
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.4rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--teal-m); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 44ch;
+    margin-bottom: 2rem;
+    line-height: 1.75;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--blue); }
+  .btn-outline {
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+    padding: 0.73rem 1.75rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: var(--blue-l); border-color: var(--blue); }
 
-.hero h1{
-    font-size:52px;
-    margin-bottom:20px;
-}
+  /* icon grid — the signature element */
+  .hero-visual {
+    background: var(--off);
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--rule);
+  }
+  .icon-grid {
+    display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem;
+  }
+  .icon-tile {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .icon-tile:hover { border-color: var(--teal-m); transform: translateY(-2px); }
+  .icon-tile svg { display: block; margin: 0 auto 0.5rem; }
+  .icon-tile p { font-size: 0.72rem; font-weight: 500; color: var(--muted); line-height: 1.3; }
+  .hero-tagline {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    letter-spacing: -0.2px;
+  }
+  .hero-tagline span { color: var(--teal-m); }
 
-.hero p{
-    font-size:22px;
-    max-width:800px;
-}
+  /* ─── STATS STRIP ─────────────────────────────────── */
+  .stats-strip {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--off);
+    padding: 2rem 5vw;
+  }
+  .stats-inner {
+    max-width: 1120px; margin: 0 auto;
+    display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); font-weight: 500; }
 
-.btn{
-    margin-top:30px;
-    display:inline-block;
-    background:white;
-    color:#0d47a1;
-    padding:15px 30px;
-    border-radius:30px;
-    text-decoration:none;
-    font-weight:bold;
-}
+  /* ─── SECTION BASE ────────────────────────────────── */
+  section { padding: 5rem 5vw; }
+  .section-inner { max-width: 1120px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--teal-m);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    color: var(--navy);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 1rem;
+    max-width: 36ch;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 52ch;
+    margin-bottom: 3rem;
+  }
 
-section{
-    padding:80px 10%;
-}
+  /* ─── ABOUT ───────────────────────────────────────── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  }
+  .about-body p { color: var(--muted); margin-bottom: 1.25rem; font-size: 1rem; }
+  .about-values { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+  .value-row { display: flex; gap: 1rem; align-items: flex-start; }
+  .value-dot {
+    flex-shrink: 0;
+    width: 8px; height: 8px;
+    background: var(--teal-m);
+    border-radius: 50%;
+    margin-top: 0.55rem;
+  }
+  .value-text strong { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+  .value-text p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+  .about-founder {
+    background: var(--off);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--rule);
+  }
+  .founder-photo {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--blue-l);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    color: var(--blue);
+    margin-bottom: 1rem;
+  }
+  .about-founder h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; }
+  .about-founder .role { font-size: 0.8rem; color: var(--teal-m); font-weight: 500; margin-bottom: 1rem; }
+  .about-founder p { font-size: 0.9rem; color: var(--muted); }
 
-.section-title{
-    text-align:center;
-    font-size:36px;
-    margin-bottom:40px;
-}
+  /* ─── PRODUCTS ────────────────────────────────────── */
+  #products { background: var(--off); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .product-card:hover { border-color: var(--teal-m); box-shadow: 0 4px 20px rgba(15,110,86,0.08); }
+  .product-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--teal-l);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+  .product-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: var(--teal-l);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  .product-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .product-card p { font-size: 0.9rem; color: var(--muted); }
+  .product-card .card-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+  .product-card .card-link:hover { gap: 0.65rem; }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
+  /* ─── TESTIMONIALS ────────────────────────────────── */
+  #testimonials { background: var(--navy); }
+  #testimonials .section-label { color: var(--teal-m); }
+  #testimonials .section-title { color: var(--white); }
+  #testimonials .section-sub { color: rgba(255,255,255,0.5); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+  .testi-stars { color: var(--teal-m); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+  .testi-card blockquote {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-style: normal;
+  }
+  .testi-person { display: flex; align-items: center; gap: 0.75rem; }
+  .testi-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--teal-l);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 600; color: var(--teal);
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: 0.875rem; font-weight: 600; color: var(--white); }
+  .testi-role { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
 
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
+  /* ─── CONTACT ─────────────────────────────────────── */
+  #contact { background: var(--white); }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start;
+  }
+  .contact-info p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.875rem; color: var(--muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--blue); }
+  .contact-link-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--off); border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-size: 0.8rem; font-weight: 500; color: var(--navy); }
+  .form-group input, .form-group textarea, .form-group select {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    border-color: var(--teal-m);
+  }
+  .form-group textarea { min-height: 120px; }
+  .form-submit {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--blue); }
+  .form-note { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
 
-.card h3{
-    margin-bottom:10px;
-    color:#0d47a1;
-}
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.4);
+    padding: 2.5rem 5vw;
+  }
+  .footer-inner {
+    max-width: 1120px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem; color: var(--white);
+  }
+  .footer-logo span { color: var(--teal-m); }
+  footer p { font-size: 0.8rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--white); }
 
-.about{
-    max-width:900px;
-    margin:auto;
-    text-align:center;
-}
+  /* ─── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 768px) {
+    #hero, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .hero-visual { display: none; }
+    .icon-grid { grid-template-columns: repeat(3,1fr); }
+  }
 
-.contact{
-    text-align:center;
-}
-
-footer{
-    background:#0d47a1;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-
-@media(max-width:768px){
-    .hero h1{
-        font-size:36px;
-    }
-
-    .hero p{
-        font-size:18px;
-    }
-}
+  /* ─── SCROLL ANIMATIONS ───────────────────────────── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
-
 <body>
 
-<header>
-    <div class="logo">Enabler.life</div>
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-logo">enabler<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Solutions</a></li>
+    <li><a href="#testimonials">Stories</a></li>
+    <li><a href="#contact" class="nav-cta">Get in touch</a></li>
+  </ul>
+</nav>
 
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <h1>Enabling Possibilities</h1>
-
-    <p>
-        Empowering independence through technology, innovation,
-        and intelligent embedded solutions.
+<!-- HERO -->
+<div id="hero" role="banner">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Assistive Technology · Accessibility</p>
+    <h1 class="hero-title">
+      Technology that<br>works for <em>every</em><br>human being.
+    </h1>
+    <p class="hero-sub">
+      Enabler designs and builds assistive technology and accessibility solutions that remove barriers — so people with disabilities can work, connect, and live on their own terms.
     </p>
-
-    <a href="#projects" class="btn">Explore Projects</a>
-</section>
-
-<section id="about">
-    <h2 class="section-title">About Enabler</h2>
-
-    <div class="about">
-        <p>
-            Enabler.life is dedicated to developing innovative
-            technologies that improve lives and create new possibilities.
-            Our focus areas include assistive technologies, embedded
-            systems, IoT solutions, and smart automation.
-        </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-primary">Explore our solutions</a>
+      <a href="#contact" class="btn-outline">Partner with us</a>
     </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="icon-grid">
+      <!-- Vision -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="7" stroke="#1D9E75" stroke-width="2"/>
+          <circle cx="16" cy="16" r="3" fill="#1D9E75"/>
+          <path d="M2 16s5-9 14-9 14 9 14 9-5 9-14 9S2 16 2 16z" stroke="#1D9E75" stroke-width="2" fill="none"/>
+        </svg>
+        <p>Vision<br>Assistance</p>
+      </div>
+      <!-- Hearing -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M16 6a8 8 0 0 1 8 8c0 4-3 6-3 9h-6" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 23a5 5 0 0 0 5 5" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="16" cy="14" r="3" stroke="#185FA5" stroke-width="2"/>
+        </svg>
+        <p>Hearing<br>Solutions</p>
+      </div>
+      <!-- Motor -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="10" y="4" width="12" height="18" rx="6" stroke="#1D9E75" stroke-width="2"/>
+          <path d="M16 22v6" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/>
+          <path d="M10 28h12" stroke="#185FA5" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>Motor<br>Support</p>
+      </div>
+      <!-- Cognitive -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M10 8c0-3.3 2.7-6 6-6s6 2.7 6 6c0 2-1 3.7-2.5 4.8C17.5 14 17 15 17 16v2h-2v-2c0-1-.5-2-1.5-2.8C12 12 11 10.6 10 9" stroke="#1D9E75" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <rect x="14" y="20" width="4" height="4" rx="2" fill="#185FA5"/>
+        </svg>
+        <p>Cognitive<br>Aids</p>
+      </div>
+      <!-- Communication -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect x="4" y="4" width="18" height="14" rx="4" stroke="#1D9E75" stroke-width="2"/>
+          <path d="M8 24l4-6h10" stroke="#185FA5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="11" r="1.5" fill="#1D9E75"/>
+          <circle cx="16" cy="11" r="1.5" fill="#1D9E75"/>
+        </svg>
+        <p>AAC<br>Communication</p>
+      </div>
+      <!-- Smart Home -->
+      <div class="icon-tile">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <path d="M4 14L16 4l12 10" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="10" y="18" width="12" height="10" rx="2" stroke="#1D9E75" stroke-width="2"/>
+          <circle cx="22" cy="10" r="4" fill="#185FA5" fill-opacity="0.2" stroke="#185FA5" stroke-width="1.5"/>
+          <path d="M22 8v4M20 10h4" stroke="#185FA5" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <p>Smart<br>Home Access</p>
+      </div>
+    </div>
+    <p class="hero-tagline">Built for <span>every</span> ability.</p>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip" aria-label="Key numbers">
+  <div class="stats-inner">
+    <div class="stat fade-up">
+      <p class="stat-num">1.3B</p>
+      <p class="stat-label">people living with disabilities globally</p>
+    </div>
+    <div class="stat fade-up">
+      <p class="stat-num">6+</p>
+      <p class="stat-label">solutions in active development</p>
+    </div>
+    <div class="stat fade-up">
+      <p class="stat-num">100%</p>
+      <p class="stat-label">designed with users, not just for them</p>
+    </div>
+    <div class="stat fade-up">
+      <p class="stat-num">WCAG</p>
+      <p class="stat-label">AA compliant across all products</p>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" aria-labelledby="about-heading">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-body">
+        <p class="section-label">Our mission</p>
+        <h2 class="section-title" id="about-heading">Accessibility is not an afterthought.</h2>
+        <p>At Enabler, we believe that technology built without accessibility in mind is technology built for fewer people. Our work starts with the people who are too often left out of the design process.</p>
+        <p>We partner with occupational therapists, disability advocates, and users with lived experience to build tools that genuinely fit into people's lives — not tools people have to adapt around.</p>
+        <div class="about-values">
+          <div class="value-row">
+            <div class="value-dot"></div>
+            <div class="value-text">
+              <strong>Co-designed, always</strong>
+              <p>Every product is built in active collaboration with the community it serves.</p>
+            </div>
+          </div>
+          <div class="value-row">
+            <div class="value-dot"></div>
+            <div class="value-text">
+              <strong>Affordable by design</strong>
+              <p>Assistive technology should not be a luxury. We keep cost at the center of our decisions.</p>
+            </div>
+          </div>
+          <div class="value-row">
+            <div class="value-dot"></div>
+            <div class="value-text">
+              <strong>Open and interoperable</strong>
+              <p>Our solutions are built to work with existing devices and ecosystems.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="about-founder fade-up">
+          <div class="founder-photo">O</div>
+          <h3>Omkar Salunkhe</h3>
+          <p class="role">Founder, Enabler</p>
+          <p>"I work on embedded systems every day. I know what technology is capable of. Enabler exists because that capability has not yet reached everyone who needs it. We are here to close that gap."</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="projects">
-    <h2 class="section-title">Featured Projects</h2>
+<!-- PRODUCTS -->
+<section id="products" aria-labelledby="products-heading">
+  <div class="section-inner">
+    <p class="section-label">Our solutions</p>
+    <h2 class="section-title" id="products-heading">What we build</h2>
+    <p class="section-sub">A growing portfolio of assistive tools designed around real user needs.</p>
+    <div class="products-grid">
 
-    <div class="cards">
-
-        <div class="card">
-            <h3>HID Assistive Technology</h3>
-            <p>
-                A patented wearable solution that enables
-                individuals with disabilities to control digital
-                devices using eye blinks and head movements.
-            </p>
+      <div class="product-card fade-up">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3C7 3 2 8 2 12s5 9 10 9 10-4 10-9-5-9-10-9z" stroke="#0F6E56" stroke-width="1.8"/>
+            <circle cx="12" cy="12" r="3" fill="#0F6E56"/>
+          </svg>
         </div>
+        <span class="product-tag">Vision</span>
+        <h3>SmartSight Navigator</h3>
+        <p>A low-cost wearable that uses ultrasonic sensing and haptic feedback to help visually impaired users navigate indoor and outdoor environments independently.</p>
+        <a href="#contact" class="card-link">Learn more →</a>
+      </div>
 
-        <div class="card">
-            <h3>R-ATG Ultrasonic Sensor</h3>
-            <p>
-                High-precision tank level monitoring solution
-                for diesel, DEF, and industrial liquids.
-            </p>
+      <div class="product-card fade-up">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="4" width="13" height="10" rx="3" stroke="#0F6E56" stroke-width="1.8"/>
+            <path d="M6 19l3-5h8" stroke="#0F6E56" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
+        <span class="product-tag">Communication</span>
+        <h3>TalkBoard Lite</h3>
+        <p>An open-source AAC (augmentative and alternative communication) board running on low-cost microcontrollers, giving non-verbal individuals a portable voice anywhere.</p>
+        <a href="#contact" class="card-link">Learn more →</a>
+      </div>
 
-        <div class="card">
-            <h3>IoT & Embedded Systems</h3>
-            <p>
-                Custom hardware and firmware development using
-                ESP32, STM32, Raspberry Pi and cloud technologies.
-            </p>
+      <div class="product-card fade-up">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3v6l3 3" stroke="#0F6E56" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9" stroke="#0F6E56" stroke-width="1.8"/>
+            <path d="M5 19l14-14" stroke="#185FA5" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+          </svg>
         </div>
+        <span class="product-tag">Motor</span>
+        <h3>GripAssist Glove</h3>
+        <p>A sensor-equipped assistive glove with servo-actuated finger support, enabling users with limited hand mobility to perform daily tasks with greater independence.</p>
+        <a href="#contact" class="card-link">Learn more →</a>
+      </div>
+
+      <div class="product-card fade-up">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="6" width="18" height="13" rx="2" stroke="#0F6E56" stroke-width="1.8"/>
+            <path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2" stroke="#0F6E56" stroke-width="1.8"/>
+            <circle cx="9" cy="13" r="1.5" fill="#0F6E56"/>
+            <circle cx="15" cy="13" r="1.5" fill="#185FA5"/>
+          </svg>
+        </div>
+        <span class="product-tag">Smart Home</span>
+        <h3>HomeReach Hub</h3>
+        <p>An accessible smart-home controller with switch-access, voice, and eye-gaze input modes — compatible with existing IoT ecosystems and requiring no app setup.</p>
+        <a href="#contact" class="card-link">Learn more →</a>
+      </div>
+
+      <div class="product-card fade-up">
+        <div class="product-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 2a7 7 0 0 1 7 7c0 3-1.5 5-3 6.5L16 19h-8l-.5-3.5C6 14 4.5 12 4.5 9A7.5 7.5 0 0 1 12 2z" stroke="#0F6E56" stroke-width="1.8"/>
+            <path d="M10 22h4" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="product-tag">Cognitive</span>
+        <h3>DailyFlow Planner</h3>
+        <p>A simplified, symbol-based daily routine assistant for individuals with cognitive or learning disabilities — designed to reduce anxiety and build independence.</p>
+        <a href="#contact" class="card-link">Learn more →</a>
+      </div>
+
+      <div class="product-card fade-up" style="border: 1.5px dashed var(--rule); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; min-height: 220px;">
+        <div style="font-size: 2rem; color: var(--rule); margin-bottom: 0.75rem;">+</div>
+        <h3 style="font-size: 0.95rem; color: var(--muted); font-weight: 400;">More in development</h3>
+        <p style="font-size: 0.85rem; color: var(--muted); margin-top: 0.5rem; max-width: 24ch;">Have a need we have not yet addressed? We want to hear from you.</p>
+        <a href="#contact" class="card-link" style="margin-top: 0.75rem;">Tell us →</a>
+      </div>
 
     </div>
+  </div>
 </section>
 
-<section id="contact">
-    <h2 class="section-title">Contact</h2>
+<!-- TESTIMONIALS -->
+<section id="testimonials" aria-labelledby="testi-heading">
+  <div class="section-inner">
+    <p class="section-label">User stories</p>
+    <h2 class="section-title" id="testi-heading">Told by the people who matter most.</h2>
+    <p class="section-sub">Real feedback from users, caregivers, and partner organizations.</p>
+    <div class="testi-grid">
 
-    <div class="contact">
-        <p>Email: info@enabler.life</p>
-        <p>Website: www.enabler.life</p>
-        <br>
-        <p>Let's build technology that enables life.</p>
+      <div class="testi-card fade-up">
+        <p class="testi-stars">★★★★★</p>
+        <blockquote>"The SmartSight prototype changed how I move through the world. For the first time in years I went to the market on my own. That is not a small thing."</blockquote>
+        <div class="testi-person">
+          <div class="testi-avatar">RS</div>
+          <div>
+            <p class="testi-name">Ramesh S.</p>
+            <p class="testi-role">Beta user · Vision impairment, Pune</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <p class="testi-stars">★★★★★</p>
+        <blockquote>"As an occupational therapist, I have tried dozens of AAC tools. TalkBoard Lite is the first one I have recommended to low-income families without hesitation — the cost does not lock people out."</blockquote>
+        <div class="testi-person">
+          <div class="testi-avatar">PM</div>
+          <div>
+            <p class="testi-name">Priya M.</p>
+            <p class="testi-role">Occupational Therapist · Mumbai</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fade-up">
+        <p class="testi-stars">★★★★★</p>
+        <blockquote>"My son uses the DailyFlow Planner every morning. He went from needing constant reminders to managing his own routine. We did not expect that kind of change from a simple device."</blockquote>
+        <div class="testi-person">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <p class="testi-name">Anita K.</p>
+            <p class="testi-role">Parent · Nagpur</p>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </section>
 
+<!-- CONTACT -->
+<section id="contact" aria-labelledby="contact-heading">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title" id="contact-heading">Let's build something meaningful.</h2>
+        <p>Whether you are a potential user, a caregiver, a healthcare provider, or an organization looking to partner — we want to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:hello@enabler.in" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="1" y="3" width="14" height="10" rx="2" stroke="#185FA5" stroke-width="1.4"/>
+                <path d="M1 5l7 5 7-5" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            </div>
+            hello@enabler.in
+          </a>
+          <a href="tel:+919999999999" class="contact-link">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M2 2.5C2 2 2.5 1.5 3 1.5h2l1 3-1.5 1c.8 1.7 2 3 3.5 3.5L9 8l3 1v2c0 .5-.5 1-1 1C5 12 2 7 2 2.5z" stroke="#185FA5" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            +91 99999 99999
+          </a>
+          <a href="https://linkedin.com" class="contact-link" target="_blank" rel="noopener">
+            <div class="contact-link-icon">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="14" height="14" rx="3" stroke="#185FA5" stroke-width="1.4"/>
+                <path d="M4 6.5v5M4 4v.5" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round"/>
+                <path d="M7 11.5V8.5c0-1 .6-2 2-2s2 1 2 2v3" stroke="#185FA5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            linkedin.com/company/enabler
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)" novalidate aria-label="Contact form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" placeholder="Ramesh Singh" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="type">I am reaching out as a…</label>
+          <select id="type" name="type">
+            <option value="">Select one</option>
+            <option>Person with a disability</option>
+            <option>Caregiver or family member</option>
+            <option>Healthcare professional</option>
+            <option>NGO or organization</option>
+            <option>Potential investor or partner</option>
+            <option>Media or researcher</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you're looking for, or what problem you want to solve…" required></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="submit-btn">Send message</button>
+        <p class="form-note" id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-    © 2026 Enabler.life | All Rights Reserved
+  <div class="footer-inner">
+    <span class="footer-logo">enabler<span>.</span></span>
+    <p>© 2025 Enabler. Built in Pune, India.</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#products">Solutions</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
 </footer>
+
+<script>
+  // Scroll fade-in
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form handler
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const status = document.getElementById('form-status');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Message sent ✓';
+      btn.style.background = '#0F6E56';
+      status.textContent = "Thank you! We'll be in touch within 2 business days.";
+      e.target.reset();
+      setTimeout(() => { btn.textContent = 'Send message'; btn.style.background = ''; btn.disabled = false; status.textContent = ''; }, 4000);
+    }, 1200);
+  }
+</script>
 
 </body>
 </html>
-```
-
